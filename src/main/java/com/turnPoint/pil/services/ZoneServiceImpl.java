@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ZoneServiceImpl implements ZoneService {
@@ -21,6 +22,10 @@ public class ZoneServiceImpl implements ZoneService {
     @Override
     public List<Zone> listZone() {
         return (List<Zone>) zoneRepository.findAll();
+    }
+
+    public Optional<Zone> listZoneById(Long id) {
+        return zoneRepository.findById(id);
     }
 
 }

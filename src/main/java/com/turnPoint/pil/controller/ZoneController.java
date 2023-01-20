@@ -3,12 +3,10 @@ package com.turnPoint.pil.controller;
 import com.turnPoint.pil.model.Zone;
 import com.turnPoint.pil.services.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ZoneController {
@@ -24,6 +22,11 @@ public class ZoneController {
     @GetMapping("/zone")
     public List<Zone> listZone() {
         return zoneService.listZone();
+    }
+
+    @GetMapping("/zone/{id}")
+    public Optional<Zone> listZoneById(@PathVariable Long id){
+        return zoneService.listZoneById(id);
     }
 
 }
