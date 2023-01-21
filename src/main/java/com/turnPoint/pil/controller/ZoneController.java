@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ZoneController {
@@ -27,13 +26,30 @@ public class ZoneController {
     }
 
     @GetMapping("/zone/{id}")
-    public ZoneWrapper listZoneById(@PathVariable Long id){
+    public ZoneWrapper listZoneById(@PathVariable Long id) {
         var listZone = zoneService.listZoneById(id);
-        if (listZone.isEmpty()){
+        if (listZone.isEmpty()) {
             return ZoneWrapper.builder().zone(null).message("No se encontró la zona").build();
-        }
-        else{
+        } else {
             return ZoneWrapper.builder().zone(listZone.get()).message("Zona encontrada").build();
+        }
+    }
+
+    @PutMapping("/zone/{id}")
+    public ZoneWrapper editZone(@RequestBody Zone zone, @PathVariable Long id) {
+        var listZone = zoneService.listZoneById(id);
+
+        if (listZone.isEmpty()) {
+            return ZoneWrapper.builder().zone(null).message("No se encontró la zona").build();
+        } else {
+
+            zone.setId(id);
+            zone.setAddress(zone.getAddress());
+            zone.setLat(zone.getLat());
+            zone.setLon(zone.getLon());
+
+            var savedZone = zoneService.editZone(zone);
+            return ZoneWrapper.builder().zone(savedZone).message("Zona editada").build();
         }
     }
 

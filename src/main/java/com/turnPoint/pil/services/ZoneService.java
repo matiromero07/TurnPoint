@@ -11,6 +11,8 @@ public interface ZoneService {
 
     List<Zone> listZone();
 
-    Optional <Zone> listZoneById(Long id);
+    Optional<Zone> listZoneById(Long id);
+
+    Zone editZone(Zone zone);
 
 }
