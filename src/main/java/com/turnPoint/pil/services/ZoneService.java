@@ -15,4 +15,6 @@ public interface ZoneService {
 
     Zone editZone(Zone zone);
 
+    void deleteZone(Long id);
+
 }

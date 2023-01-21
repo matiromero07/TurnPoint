@@ -53,4 +53,18 @@ public class ZoneController {
         }
     }
 
+    @DeleteMapping("/zone/{id}")
+    public ZoneWrapper deleteZone(@PathVariable Long id) {
+        var listZone = zoneService.listZoneById(id);
+
+        if (listZone.isEmpty()) {
+            return ZoneWrapper.builder().zone(null).message("No se encontró la zona").build();
+        } else {
+
+            zoneService.deleteZone(id);
+            return ZoneWrapper.builder().zone(listZone.get()).message("Zona borrada").build();
+        }
+
+    }
+
 }

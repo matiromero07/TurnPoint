@@ -32,4 +32,8 @@ public class ZoneServiceImpl implements ZoneService {
         return zoneRepository.save(zone);
     }
 
+    public void deleteZone(Long id){
+        zoneRepository.deleteById(id);
+    }
+
 }
