@@ -28,4 +28,12 @@ public class ZoneServiceImpl implements ZoneService {
         return zoneRepository.findById(id);
     }
 
+    public Zone editZone(Zone zone){
+        return zoneRepository.save(zone);
+    }
+
+    public void deleteZone(Long id){
+        zoneRepository.deleteById(id);
+    }
+
 }
