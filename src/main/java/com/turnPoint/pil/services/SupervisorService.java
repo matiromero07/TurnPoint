@@ -1,6 +1,7 @@
 package com.turnPoint.pil.services;
 
 import com.turnPoint.pil.model.Supervisor;
+import com.turnPoint.pil.model.Zone;
 
 
 import java.util.List;
@@ -13,5 +14,8 @@ public interface SupervisorService {
 
     Optional<Supervisor> listSupervisorById(Long id);
 
+    Supervisor editSupervisor(Supervisor supervisor);
+
     void deleteSupervisor(Long id);
+
 }

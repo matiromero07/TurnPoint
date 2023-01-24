@@ -52,7 +52,7 @@ public class SupervisorController {
             supervisor.setSurname(supervisor.getSurname());
             supervisor.setPhoneNumber(supervisor.getPhoneNumber());
 
-            var savedSupervisor = supervisorService.saveSupervisor(supervisor);
+            var savedSupervisor = supervisorService.editSupervisor(supervisor);
             return SupervisorWrapper.builder().supervisor(savedSupervisor).message("Supervisor editado").build();
         }
     }
