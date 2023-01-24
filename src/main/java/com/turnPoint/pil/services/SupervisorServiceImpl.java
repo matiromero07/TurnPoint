@@ -1,6 +1,7 @@
 package com.turnPoint.pil.services;
 
 import com.turnPoint.pil.model.Supervisor;
+import com.turnPoint.pil.model.Zone;
 import com.turnPoint.pil.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class SupervisorServiceImpl implements SupervisorService {
     public Optional<Supervisor> listSupervisorById(Long id) {
 
         return supervisorRepository.findById(id);
+    }
+
+    public Supervisor editSupervisor(Supervisor supervisor){
+        return supervisorRepository.save(supervisor);
     }
 
 }
