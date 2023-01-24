@@ -12,4 +12,6 @@ public interface SupervisorService {
     List<Supervisor> listSupervisor();
 
     Optional<Supervisor> listSupervisorById(Long id);
+
+    void deleteSupervisor(Long id);
 }

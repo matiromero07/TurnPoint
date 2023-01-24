@@ -56,4 +56,18 @@ public class SupervisorController {
             return SupervisorWrapper.builder().supervisor(savedSupervisor).message("Supervisor editado").build();
         }
     }
+
+    @DeleteMapping("/supervisor/{id}")
+    public SupervisorWrapper deleteSupervisor(@PathVariable Long id) {
+        var listSupervisor = supervisorService.listSupervisorById(id);
+
+        if (listSupervisor.isEmpty()) {
+            return SupervisorWrapper.builder().supervisor(null).message("No se encontró el supervisor").build();
+        } else {
+
+            supervisorService.deleteSupervisor(id);
+            return SupervisorWrapper.builder().supervisor(listSupervisor.get()).message("Supervisor eliminado").build();
+        }
+
+    }
 }

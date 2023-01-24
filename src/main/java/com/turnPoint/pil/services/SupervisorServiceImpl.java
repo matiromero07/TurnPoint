@@ -31,5 +31,10 @@ public class SupervisorServiceImpl implements SupervisorService {
         return supervisorRepository.findById(id);
     }
 
+    public void deleteSupervisor(Long id){
+        supervisorRepository.deleteById(id);
+    }
+
+
 }
 
