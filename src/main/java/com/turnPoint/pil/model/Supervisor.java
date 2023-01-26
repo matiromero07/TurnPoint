@@ -17,4 +17,9 @@ public class Supervisor {
     private String surname;
     private Long phoneNumber;
 
+    public Supervisor(String name, String surname, Long phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+    }
 }
