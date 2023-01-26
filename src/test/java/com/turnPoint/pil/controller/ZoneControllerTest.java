@@ -102,4 +102,79 @@ public class ZoneControllerTest {
 
     }
 
+    @Test
+    public void editZone_error() throws Exception {
+        Mockito.when(zoneRepository.save(zone1)).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/zone/1")
+                        .content("{\n" +
+                                "    \"address\": \"Independencia 821\",\n" +
+                                "    \"lat\": \"200.122.421.2\",\n" +
+                                "    \"lon\": \"152.421.122.1\"\n" +
+                                "}")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", Matchers.is("No se encontró la zona")));
+    }
+
+    @Test
+    public void editZone_success() throws Exception {
+        Mockito.when(zoneRepository.findById(1L)).thenReturn(Optional.ofNullable(zone1));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/zone/1")
+                        .content("{\n" +
+                                "    \"address\": \"Independencia 821\",\n" +
+                                "    \"lat\": \"200.122.421.2\",\n" +
+                                "    \"lon\": \"152.421.122.1\"\n" +
+                                "}")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", Matchers.is("Zona editada")));
+    }
+
+    @Test
+    public void deleteZone_error() throws Exception {
+        Mockito.when(zoneRepository.findById(zone1.getId())).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/zone/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", Matchers.is("No se encontró la zona")));
+    }
+
+    @Test
+    public void deleteZone_success() throws Exception {
+        Mockito.when(zoneRepository.findById(1L)).thenReturn(Optional.ofNullable(zone1));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/zone/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", Matchers.is("Zona borrada")));
+    }
+
+    @Test
+    public void calculateDistance_error() throws Exception {
+        Mockito.when(zoneRepository.findById(zone1.getId())).thenReturn(null);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/calculateDistance/1/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("No se encontró la zona"));
+    }
+
+    @Test
+    public void calculateDistance_success() throws Exception{
+        Mockito.when(zoneRepository.findById(1L)).thenReturn(Optional.ofNullable(zone1));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/calculateDistance/1/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
 }
