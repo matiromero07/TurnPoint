@@ -36,4 +36,15 @@ public class ZoneServiceImpl implements ZoneService {
         zoneRepository.deleteById(id);
     }
 
+    @Override
+    public String calculateDistance(Optional<Zone> listZone, Optional<Zone> listZone2) {
+
+        var zone1 = listZone.get();
+        var zone2 = listZone2.get();
+
+        return zone1.calculateDistance(zone2).toString();
+
+    }
+
+
 }

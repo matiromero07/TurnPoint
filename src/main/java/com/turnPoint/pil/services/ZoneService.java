@@ -17,4 +17,5 @@ public interface ZoneService {
 
     void deleteZone(Long id);
 
+    String calculateDistance(Optional<Zone> listZone, Optional<Zone> listZone2);
 }
