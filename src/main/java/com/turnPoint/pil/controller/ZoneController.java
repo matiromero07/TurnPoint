@@ -67,15 +67,15 @@ public class ZoneController {
 
     }
 
-    @GetMapping("/calcularDistancia/{id}/{id2}")
-    public String calcularDistancia(@PathVariable Long id, @PathVariable Long id2){
+    @GetMapping("/calculateDistance/{id}/{id2}")
+    public String calculateDistance(@PathVariable Long id, @PathVariable Long id2) {
         var listZone = zoneService.listZoneById(id);
         var listZone2 = zoneService.listZoneById(id2);
 
         if (listZone.isEmpty() || listZone2.isEmpty()) {
             return "No se encontró la zona";
         } else {
-            return zoneService.calculateDistance(listZone,listZone2);
+            return zoneService.calculateDistance(listZone, listZone2);
         }
 
     }
